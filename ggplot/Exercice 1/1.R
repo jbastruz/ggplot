@@ -171,6 +171,9 @@ P2 = ggplot(diamonds2, aes(x = price, color = cut, fill = cut)) +
   geom_density(alpha = 0.1, size = 1)
 P2
 
+ggsave("filename.eps", device=cairo_ps, fallback_resolution = 600)
+#cet extract marche pour récuptérer les transparences
+
 P3 = ggplot(diamonds2, aes(sample = price, color = cut)) + 
   facet_grid(cols = vars(cut)) +
   geom_qq() +
