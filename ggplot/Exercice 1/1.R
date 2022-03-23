@@ -13,7 +13,7 @@ p1 + geom_point()
 #Question 2
 p2 = p1 + 
   geom_point(color = "blue")
-p2
+
 
 #Question 3
 p3 = p1 + 
@@ -21,19 +21,19 @@ p3 = p1 +
   geom_rug(alpha = 0.1) + 
   labs(col='Cut quality') + 
   theme(legend.position = "top")
-p3
+
 
 #Question 4
 p4 = p1 + 
   geom_point(aes(col = depth > 62.5, shape = depth > 62.5)) + 
   labs(col = 'depth > 62', shape = 'depth > 62') 
-p4
+
 
 #Question 5
 p5 = p1 + 
   geom_point(aes(col = cut, shape = depth > 62.5)) + 
   labs(shape = 'depth > 62') 
-p5
+
 
 #Question 6
 p6 = p5 +
@@ -41,33 +41,33 @@ p6 = p5 +
        y = "Price in US dollars",
        title = "Diamonds data: price versus carat.",
        subtitle = "Color by cut and shape by depth") 
-p6
+
 
 #Question 7
 p7 = p4 +
   geom_smooth(method = "lm", se=FALSE, aes(color = depth > 62.5))
-p7  
+
 
 #Question 8
 p8 = p4 +
   geom_smooth(method = "lm", se=FALSE, aes(linetype = depth > 62), col = "grey")
-p8 
+
 
 #question 9
 p9 = p8 +
   geom_point(size= 0.8, color = "grey")
-p9
+
 
 #Question 10
 p10 = p4 +
   geom_smooth(method = "lm", se = F, color = "grey")
 
-p10
+
 
 #Question 11
 p11 = p7 +
   geom_smooth(method = "lm", se = F, color = "grey", linetype = 3)
-p11
+
 
 #Question 12
 p12 = ggplot(diamonds2, aes(log10(carat), log10(price))) + 
@@ -75,7 +75,7 @@ p12 = ggplot(diamonds2, aes(log10(carat), log10(price))) +
   labs(col = 'depth > 62', shape = 'depth > 62') +
   geom_smooth(method = "lm", se=FALSE, aes(color = depth > 62.5)) +
   geom_smooth(method = "lm", se = F, color = "grey", linetype = 3)
-p12
+
 
 #question 13
 p12 = ggplot(diamonds2, aes(log10(carat), log10(price))) + 
@@ -83,7 +83,7 @@ p12 = ggplot(diamonds2, aes(log10(carat), log10(price))) +
   labs(col = 'depth > 62', shape = 'depth > 62') +
   geom_smooth(method = "lm", se = F, color = "grey", linetype = 3) +
   geom_smooth(method = "lm", se = F, aes(color = depth > 62.5))
-p12
+
 
 #Question 13
 p13 = p10 + coord_cartesian(
@@ -93,23 +93,22 @@ p13 = p10 + coord_cartesian(
   default = FALSE,
   clip = "on"
 )
-p13
+
 
 #Question 14
 p14 = p13 + lims(x = c(0.3,1), y = c(1000, 10000))
 
-p14
 
 #Question 15
 p15 = p1  + geom_point() +
   geom_smooth(formula = y~x, se = F) +
   geom_function(fun = \(x) exp(x), xlim) # a voir
 
-p15
+
 
 #Qestion 16
 p16 = ggplot(diamonds2, aes(x = cut), stat = "count") + geom_bar(alpha=0.5, aes(y = ..count.. / sum(..count..))) + labs(y = "prop")
-p16
+
 
 #Question 17
 
@@ -124,7 +123,7 @@ diamonds2$priceC = as.factor(diamonds2$priceC)
 
 p17 = ggplot(diamonds2, aes(x = cut, fill = priceC , color = priceC)) +
   geom_bar(position = "fill")
-p17
+
 
 # gauche
 
@@ -166,7 +165,7 @@ ggplot(diamonds2, aes(y = price, x = cut)) +
 P1 = ggplot(diamonds2, aes(y = price, x = cut, color = cut)) + 
   geom_boxplot(width = 0.2, varwidth = TRUE, outlier.shape = NA, fill = NA, size = 1) +
   geom_jitter(width = 0.1, height = 0, alpha = 0.2)
-P1
+
 
 P2 = ggplot(diamonds2, aes(x = price, color = cut, fill = cut)) + 
   geom_density(alpha = 0.1, size = 1)
@@ -176,6 +175,6 @@ P3 = ggplot(diamonds2, aes(sample = price, color = cut)) +
   facet_grid(cols = vars(cut)) +
   geom_qq() +
   geom_qq_line()
-P3
+
 
 ((P1 + guides(colour = "none")) + P2) / (P3 + guides(colour = "none")) + plot_layout(guides = "collect")
