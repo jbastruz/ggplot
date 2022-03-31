@@ -1,5 +1,6 @@
 library(ggplot2)
 library(patchwork)
+library(plotly)
 
 set.seed(10)
 diamonds2 <- diamonds[sample(nrow(diamonds), size = 400), ]
