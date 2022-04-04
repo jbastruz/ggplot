@@ -166,11 +166,11 @@ ggplot(diamonds2, aes(y = price, x = cut)) +
 P1 = ggplot(diamonds2, aes(y = price, x = cut, color = cut)) + 
   geom_boxplot(width = 0.2, varwidth = TRUE, outlier.shape = NA, fill = NA, size = 1) +
   geom_jitter(width = 0.1, height = 0, alpha = 0.2)
-
+GP1 = ggplotly(P1)
 
 P2 = ggplot(diamonds2, aes(x = price, color = cut, fill = cut)) + 
   geom_density(alpha = 0.1, size = 1)
-P2
+GP2 = ggplotly(P2)
 
 ggsave("filename.eps", device=cairo_ps, fallback_resolution = 600)
 #cet extract marche pour récuptérer les transparences
@@ -179,6 +179,8 @@ P3 = ggplot(diamonds2, aes(sample = price, color = cut)) +
   facet_grid(cols = vars(cut)) +
   geom_qq() +
   geom_qq_line()
+GP3 = ggplotly(P3, showlegend = F)
 
-
+SP = subplot(GP1, GP2, margin = 0.05)
+subplot(SP, GP3, nrows = 2, margin = 0.05)
 ((P1 + guides(colour = "none")) + P2) / (P3 + guides(colour = "none")) + plot_layout(guides = "collect")
